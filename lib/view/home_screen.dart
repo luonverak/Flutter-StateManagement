@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
 
+import '../widget/title_app.dart';
+import '../widget/title_category.dart';
+
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
   TextEditingController controller = TextEditingController();
@@ -22,20 +25,7 @@ class HomeScreen extends StatelessWidget {
         ),
         child: ListView(
           children: [
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'កាហ្វេខ្មែរ',
-                  style: TextStyle(
-                    fontSize: 30,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Fasthland',
-                  ),
-                ),
-              ],
-            ),
+            const TitleApp(),
             const SizedBox(
               height: 10,
             ),
@@ -77,40 +67,116 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
+            const TitleCategory(),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Image.asset(
-                    'asset/icons/coffee.png',
-                    width: 35,
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  const Text(
-                    'ប្រភេទកាហ្វេ',
-                    style: TextStyle(
-                      fontSize: 25,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w700,
-                      fontFamily: 'Fasthland',
+              child: SizedBox(
+                width: double.infinity,
+                height: MediaQuery.of(context).size.height,
+                child: GridView.count(
+                  physics: const NeverScrollableScrollPhysics(),
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 7,
+                  mainAxisSpacing: 7,
+                  childAspectRatio: 1 / 1.5,
+                  children: List.generate(
+                    6,
+                    (index) => Stack(
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width / 2,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            image: const DecorationImage(
+                              image: AssetImage('asset/images/coffee.webp'),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          top: 5,
+                          right: 5,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: const Color.fromARGB(134, 255, 255, 255),
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.all(4),
+                              child: Icon(
+                                Icons.favorite,
+                                color: Colors.red,
+                                size: 30,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 0,
+                          child: Container(
+                            decoration: const BoxDecoration(
+                                // color: Color.fromARGB(108, 255, 255, 255),
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(10),
+                                  bottomRight: Radius.circular(10),
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Color.fromARGB(255, 255, 255, 255),
+                                    blurRadius: 35,
+                                  )
+                                ]),
+                            height: 45,
+                            width: MediaQuery.of(context).size.width / 2.11,
+                            child: const Padding(
+                              padding: EdgeInsets.all(3),
+                              child: Row(
+                                children: [
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    'Cocfierip',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        const Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: Padding(
+                            padding: EdgeInsets.only(bottom: 6, right: 5),
+                            child: Icon(
+                              Icons.shopping_cart,
+                              color: Colors.blueAccent,
+                              size: 30,
+                            ),
+                          ),
+                        )
+                      ],
                     ),
                   ),
-                ],
+                ),
               ),
-            )
+            ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color.fromARGB(80, 255, 255, 255),
+        backgroundColor: Colors.white,
         onPressed: () {},
         child: const badges.Badge(
           badgeContent: Text('3'),
           child: Icon(
             Icons.shopping_cart,
+            color: Colors.blueAccent,
             size: 30,
           ),
         ),
