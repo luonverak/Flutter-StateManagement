@@ -79,17 +79,25 @@ class HomeScreen extends StatelessWidget {
                 height: 200,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Colors.grey[300],
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: CarouselSlider.builder(
                   itemCount: listProduct.length,
                   itemBuilder: (BuildContext context, int itemIndex,
                           int pageViewIndex) =>
-                      Image(
-                    fit: BoxFit.cover,
-                    image: AssetImage(
-                      listProduct[itemIndex].image,
+                      GestureDetector(
+                    onTap: () {
+                      Get.to(
+                        DetailProduct(
+                          product: listProduct[itemIndex],
+                        ),
+                      );
+                    },
+                    child: Image(
+                      fit: BoxFit.cover,
+                      image: AssetImage(
+                        listProduct[itemIndex].image,
+                      ),
                     ),
                   ),
                   options: CarouselOptions(

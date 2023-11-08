@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:readmore/readmore.dart';
 import 'package:statemagement/model/product.dart';
 import 'package:statemagement/view/home_screen.dart';
 
