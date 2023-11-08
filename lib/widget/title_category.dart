@@ -12,7 +12,7 @@ class TitleCategory extends StatelessWidget {
         children: [
           Image.asset(
             'asset/icons/coffee.png',
-            width: 35,
+            width: 25,
           ),
           const SizedBox(
             width: 10,
@@ -20,7 +20,7 @@ class TitleCategory extends StatelessWidget {
           const Text(
             'ប្រភេទកាហ្វេ​ និង​ នំ',
             style: TextStyle(
-              fontSize: 25,
+              fontSize: 18,
               color: Colors.white,
               fontWeight: FontWeight.w700,
               fontFamily: 'Fasthland',
