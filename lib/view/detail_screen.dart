@@ -29,11 +29,14 @@ class DetailProduct extends StatelessWidget {
                 Container(
                   width: double.infinity,
                   height: MediaQuery.sizeOf(context).height / 2.4,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors.white,
-                    image: DecorationImage(
+                  ),
+                  child: Hero(
+                    tag: product.id,
+                    child: Image.asset(
+                      product.image,
                       fit: BoxFit.cover,
-                      image: AssetImage(product.image),
                     ),
                   ),
                 ),

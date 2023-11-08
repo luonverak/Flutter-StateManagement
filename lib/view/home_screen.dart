@@ -159,97 +159,102 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget itemProduct(Product product) {
-    return GestureDetector(
-      onTap: () {
-        Get.to(DetailProduct(
-          product: product,
-        ));
-      },
-      child: Stack(
-        alignment: Alignment.bottomCenter,
-        children: [
-          Container(
-            width: double.infinity / 2,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage(product.image),
+    return Stack(
+      alignment: Alignment.bottomCenter,
+      children: [
+        GestureDetector(
+          onTap: () {
+            Get.to(
+              DetailProduct(
+                product: product,
+              ),
+            );
+          },
+          child: Hero(
+            tag: product.id,
+            child: Container(
+              width: double.infinity / 2,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage(product.image),
+                ),
               ),
             ),
           ),
-          Positioned(
-            top: 5,
-            right: 5,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
-                color: const Color.fromARGB(134, 255, 255, 255),
+        ),
+        Positioned(
+          top: 5,
+          right: 5,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(50),
+              color: const Color.fromARGB(134, 255, 255, 255),
+            ),
+            child: const Padding(
+              padding: EdgeInsets.all(4),
+              child: Icon(
+                Icons.favorite,
+                color: Colors.red,
+                size: 30,
               ),
-              child: const Padding(
-                padding: EdgeInsets.all(4),
+            ),
+          ),
+        ),
+        Positioned(
+          child: Container(
+            decoration: const BoxDecoration(
+                // color: Color.fromARGB(108, 255, 255, 255),
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(10),
+                  bottomRight: Radius.circular(10),
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    blurRadius: 35,
+                  )
+                ]),
+            height: 45,
+            width: double.infinity / 2.11,
+            child: Padding(
+              padding: const EdgeInsets.all(3),
+              child: Row(
+                children: [
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    product.name,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        const Positioned(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(bottom: 6, right: 5),
                 child: Icon(
-                  Icons.favorite,
-                  color: Colors.red,
+                  Icons.shopping_cart,
+                  color: Colors.blueAccent,
                   size: 30,
                 ),
               ),
-            ),
+            ],
           ),
-          Positioned(
-            child: Container(
-              decoration: const BoxDecoration(
-                  // color: Color.fromARGB(108, 255, 255, 255),
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10),
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color.fromARGB(255, 255, 255, 255),
-                      blurRadius: 35,
-                    )
-                  ]),
-              height: 45,
-              width: double.infinity / 2.11,
-              child: Padding(
-                padding: const EdgeInsets.all(3),
-                child: Row(
-                  children: [
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      product.name,
-                      style: const TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          const Positioned(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(bottom: 6, right: 5),
-                  child: Icon(
-                    Icons.shopping_cart,
-                    color: Colors.blueAccent,
-                    size: 30,
-                  ),
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
+        )
+      ],
     );
   }
 }
