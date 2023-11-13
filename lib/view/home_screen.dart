@@ -6,6 +6,7 @@ import 'package:statemagement/model/product.dart';
 
 import '../widget/title_app.dart';
 import '../widget/title_category.dart';
+import 'card_screen.dart';
 import 'detail_screen.dart';
 
 final List<String> list = ['asset/images/coffee.webp'];
@@ -145,7 +146,9 @@ class HomeScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.white,
-        onPressed: () {},
+        onPressed: () {
+          Get.to(CardScreen());
+        },
         child: const badges.Badge(
           badgeContent: Text('3'),
           child: Icon(

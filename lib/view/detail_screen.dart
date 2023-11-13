@@ -3,9 +3,15 @@ import 'package:get/get.dart';
 import 'package:statemagement/model/product.dart';
 import 'package:statemagement/view/home_screen.dart';
 
-class DetailProduct extends StatelessWidget {
+class DetailProduct extends StatefulWidget {
   const DetailProduct({super.key, required this.product});
   final Product product;
+
+  @override
+  State<DetailProduct> createState() => _DetailProductState();
+}
+
+class _DetailProductState extends State<DetailProduct> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,9 +39,9 @@ class DetailProduct extends StatelessWidget {
                     color: Colors.white,
                   ),
                   child: Hero(
-                    tag: product.id,
+                    tag: widget.product.id,
                     child: Image.asset(
-                      product.image,
+                      widget.product.image,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -86,7 +92,7 @@ class DetailProduct extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    product.name,
+                    widget.product.name,
                     style: const TextStyle(
                         fontSize: 23,
                         color: Colors.white,
@@ -96,7 +102,7 @@ class DetailProduct extends StatelessWidget {
                     height: 15,
                   ),
                   Text(
-                    'Price ${product.price}\$',
+                    'Price ${widget.product.price}\$',
                     style: const TextStyle(
                       fontSize: 18,
                       color: Colors.white,
@@ -110,20 +116,30 @@ class DetailProduct extends StatelessWidget {
                     children: [
                       FloatingActionButton(
                         backgroundColor: const Color.fromARGB(255, 0, 85, 154),
-                        onPressed: () {},
+                        onPressed: () {
+                          setState(() {
+                            (widget.product.counter > 1)
+                                ? widget.product.counter--
+                                : print('Error');
+                          });
+                        },
                         child: const Icon(Icons.remove),
                       ),
                       FloatingActionButton(
                         backgroundColor: const Color.fromARGB(255, 0, 85, 154),
                         onPressed: () {},
                         child: Text(
-                          '${product.counter}',
+                          '${widget.product.counter}',
                           style: const TextStyle(fontSize: 20),
                         ),
                       ),
                       FloatingActionButton(
                         backgroundColor: const Color.fromARGB(255, 0, 85, 154),
-                        onPressed: () {},
+                        onPressed: () {
+                          setState(() {
+                            widget.product.counter++;
+                          });
+                        },
                         child: const Icon(Icons.add),
                       )
                     ],
