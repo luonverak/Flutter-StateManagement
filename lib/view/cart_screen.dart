@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:statemagement/model/product.dart';
 import 'package:statemagement/view/home_screen.dart';
-
 import '../controller/controller.dart';
 import '../widget/item_add_cart.dart';
 
