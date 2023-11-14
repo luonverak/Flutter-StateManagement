@@ -4,9 +4,10 @@ import 'package:badges/badges.dart' as badges;
 import 'package:get/get.dart';
 import 'package:statemagement/model/product.dart';
 
+import '../controller/controller.dart';
 import '../widget/title_app.dart';
 import '../widget/title_category.dart';
-import 'card_screen.dart';
+import 'cart_screen.dart';
 import 'detail_screen.dart';
 
 final List<String> list = ['asset/images/coffee.webp'];
@@ -14,6 +15,7 @@ final List<String> list = ['asset/images/coffee.webp'];
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
   TextEditingController controller = TextEditingController();
+  final MyController myController = Get.put(MyController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -149,9 +151,9 @@ class HomeScreen extends StatelessWidget {
         onPressed: () {
           Get.to(CardScreen());
         },
-        child: const badges.Badge(
-          badgeContent: Text('3'),
-          child: Icon(
+        child: badges.Badge(
+          badgeContent: Text('${myController.rxList.length}'),
+          child: const Icon(
             Icons.shopping_cart,
             color: Colors.blueAccent,
             size: 30,
@@ -242,16 +244,21 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ),
-        const Positioned(
+        Positioned(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Padding(
                 padding: EdgeInsets.only(bottom: 6, right: 5),
-                child: Icon(
-                  Icons.shopping_cart,
-                  color: Colors.blueAccent,
-                  size: 30,
+                child: GestureDetector(
+                  onTap: () {
+                    myController.addItem(product);
+                  },
+                  child: const Icon(
+                    Icons.shopping_cart,
+                    color: Colors.blueAccent,
+                    size: 30,
+                  ),
                 ),
               ),
             ],

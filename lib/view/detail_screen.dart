@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:statemagement/model/product.dart';
 import 'package:statemagement/view/home_screen.dart';
 
+import '../controller/controller.dart';
+
 class DetailProduct extends StatefulWidget {
   const DetailProduct({super.key, required this.product});
   final Product product;
@@ -12,6 +14,7 @@ class DetailProduct extends StatefulWidget {
 }
 
 class _DetailProductState extends State<DetailProduct> {
+  final MyController myController = Get.put(MyController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,7 +76,9 @@ class _DetailProductState extends State<DetailProduct> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              myController.addItem(widget.product);
+                            },
                             icon: const Icon(
                               Icons.shopping_cart,
                               color: Colors.white,

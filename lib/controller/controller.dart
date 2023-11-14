@@ -1,14 +1,11 @@
 import 'package:get/get.dart';
 
-class MyController extends GetxController {
-  RxInt counter = 0.obs;
-  Future increment() async {
-    counter++;
-    update();
-  }
+import '../model/product.dart';
 
-  Future decrement() async {
-    counter--;
+class MyController extends GetxController {
+  RxList<Product> rxList = <Product>[].obs;
+  void addItem(Product product) {
+    rxList.add(product);
     update();
   }
 }
